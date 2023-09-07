@@ -92,10 +92,10 @@ var bouton = document.getElementById('btnObjet');
 bouton.addEventListener('click',filtreObjet);
             
      
-//Filter Hotel & restaurants//
+//Filtre Hotel & restaurants//
       
 function filtreHotelsRestaurants(){
-  //Display Hotels & restaurants//
+  //Afficher Hotels & restaurants//
   const elements = document.querySelectorAll('div.gallery figure');
   elements.forEach((element) => {
     const categoryId = element.getAttribute('category-id');
@@ -111,11 +111,11 @@ var bouton = document.getElementById('btnHotelRestaurant');
 bouton.addEventListener('click',filtreHotelsRestaurants);
 
       
-//Filter Appartements//
+//Filtre Appartements//
 
 function filtreAppartements(){
           
-  //Display Appartements//
+  //Afficher Appartements//
   const elements = document.querySelectorAll('div.gallery figure');
   elements.forEach((element) => {
       const categoryId = element.getAttribute('category-id');
@@ -130,11 +130,11 @@ function filtreAppartements(){
 var bouton = document.getElementById('btnAppartement');
 bouton.addEventListener('click',filtreAppartements);
 
-//Filter all categories//
+//Afficher categories//
 
 function filtreTous(){
 
-  //Display all categories of works//
+  //Afficher categories //
   const elements = document.querySelectorAll('div.gallery figure');
   elements.forEach((element) => {
       element.style.display = 'block';
@@ -145,7 +145,7 @@ var bouton = document.getElementById('btnTous');
 bouton.addEventListener('click',filtreTous);
 
 
-//Function that keeps the filter button selected//
+//Fonction qui maintient le bouton de filtre sélectionné//
 
 const boutons = document.querySelectorAll('.bouton-css');
 
@@ -158,13 +158,13 @@ boutons.forEach((bouton) => {
     sessionStorage.setItem('boutonSelectionne', this.id);
   });
 });
-//allows to return to the "all filter" when reloading the page
+//Permet de revenir au filtre "tout" lors du rechargement de la page
 window.onbeforeunload = function(){
 sessionStorage.removeItem('boutonSelectionne');
 }
 
 
-//LOGIN ADMINISTRATOR//
+//LOGIN //
 
 const loginStatus = document.getElementById("login")
 const logoutStatus = document.getElementById("logout")
@@ -175,7 +175,7 @@ const portfolioModify = document.getElementById("portfolio-l-modify")
 const filtreModify = document.querySelector('.filtre')
 
 
-//displays the administrator elements//
+//Affiche les éléments de l'administrateur//
 
 if (JSON.parse(sessionStorage.getItem("isConnected"))) {
   loginStatus.style.display = 'none'
@@ -196,7 +196,7 @@ if (JSON.parse(sessionStorage.getItem("isConnected"))) {
   description.style.display = 'none'
 }
 
-//Reset user's connexion state//
+//Reinitialiser l'état de connexion//
 logoutStatus.addEventListener("click", (event) => {
   event.preventDefault();
   sessionStorage.removeItem("Token");
@@ -224,7 +224,7 @@ data.forEach((category) => {
 });
 });
 
-//MODAL//
+//MODALE//
 
 const modal = document.querySelector('#modal');
 const modalContent = document.querySelector('#modal-content');
@@ -253,43 +253,6 @@ modalClose.addEventListener('click', hideModal);
 modal.addEventListener('click', hideModal);
 
 
-//Add photo button//
-
-// const newPhotoBtn = document.querySelector('#new-photo');
-// const returnBtn = document.querySelector('#modal-return');
-// const modalPhotoClose = document.querySelector("#modal-photo-close");
-// const fileInput = document.querySelector('#file-input');
-
-// newPhotoBtn.addEventListener('click', function() {
-//   modalContent.style.display = 'none';
-//   modalPhoto.style.display = 'block';
-// });
-
-// returnBtn.addEventListener('click', function(){
-//   modalContent.style.display = 'flex';
-//   modalPhoto.style.display = 'none';
-// })
-
-// modalPhotoClose.addEventListener('click', hideModal);
-
-// fileInput.addEventListener('change', function() {
-//   const selectedFile = fileInput.files[0];
-//   if (selectedFile) {
-//     const fileType = selectedFile.type;
-//     if (fileType.startsWith('image/')) {
-//       // C'est un fichier image
-//       // Vous pouvez maintenant effectuer d'autres actions ici si nécessaire
-//       console.log('Fichier image sélectionné');
-//     } else {
-//       // Ce n'est pas un fichier image
-//       alert('Veuillez sélectionner un fichier image.');
-//       // Réinitialisez l'élément input pour effacer la sélection non valide (facultatif)
-//       fileInput.value = '';
-//     }
-//   }
-// });
-
-
 const newPhotoBtn = document.querySelector('#new-photo');
 const returnBtn = document.querySelector('#modal-return');
 const modalPhotoClose = document.querySelector("#modal-photo-close");
@@ -310,7 +273,7 @@ modalPhotoClose.addEventListener('click', hideModal);
 
 
 
-//ADD WORKS TO THE MODAL//
+//AJOUTER DES PROJETS À LA MODALE//
 
 const imagesModalContainer = document.querySelector('.gallery-modal')
 
@@ -323,14 +286,14 @@ const deleteIcon = document.createElement('i')
 figureImage.src = work.imageUrl
 figureImage.alt = work.title
 figureCaption.innerHTML = "éditer"
-figure.setAttribute('data-id', work.id); // Add a data-id attribute to store the work ID
+figure.setAttribute('data-id', work.id); // Ajouter un attribut data-id pour stocker l'identifiant du travail
 deleteIcon.className = "fa-regular fa-trash-can" 
 
 figure.appendChild(figureImage)
 figure.appendChild(figureCaption)
 figure.appendChild(deleteIcon)
 
-// Add a delete event when clicking on the "delete" icon
+// Ajouter un événement de suppression lors du clic sur l'icône "supprimer"
 deleteIcon.addEventListener('click', (event) => {
   event.preventDefault();
   deleteWorkById(work.id);
@@ -349,7 +312,7 @@ fetch('http://localhost:5678/api/works')
 });
 
 
-//DELETE WORK//
+//SUPPRIMER PROJET//
 
 function deleteWorkById(workId) {
 const token = sessionStorage.getItem("Token");
@@ -384,7 +347,7 @@ if (confirmation) {
 }    
 }  
 
-//Delete all gallery//
+//SUPPRIMER TOUTE LA GALLERIE//
 
 function deleteGallery() {
 const token = sessionStorage.getItem("Token");
@@ -409,7 +372,7 @@ if (confirmation) {
 }
 });
 
-//Check form filled//
+//Vérifier que le formulaire est rempli//
 
 const titleInput = document.getElementById('modal-photo-title');
 const categorySelect = document.getElementById('modal-photo-category');
@@ -419,7 +382,7 @@ const imageInput = document.getElementById('image');
 imageInput.addEventListener("change", function () {
   const selectedFile = imageInput.files[0]; // Récupération du fichier sélectionné
 
-  // Vérification de l'extension du fichier
+  // Vérification de l'extension du fichier (photo uniquement)
   if (selectedFile) {
     const fileName = selectedFile.name;
     const fileExtension = fileName.split(".").pop().toLowerCase();
@@ -449,7 +412,7 @@ categorySelect.addEventListener('change', checkForm);
 imageInput.addEventListener('change', checkForm);
 
 
-//ADD NEW WORK//
+//AJOUTER NOUVEAU PROJET//
 
 const btnValider = document.getElementById("modal-valider");
 btnValider.addEventListener("click", addNewWork);
@@ -463,23 +426,12 @@ const title = document.getElementById("modal-photo-title").value;
 const category = document.getElementById("modal-photo-category").value;
 const image = document.getElementById("image").files[0];
 
-
-
-// // Check if the selected file is an image (JPG or PNG)
-// const allowedExtensions = ["jpg", "jpeg", "png"];
-// const fileExtension = image.name.split(".").pop().toLowerCase();
-// if (!allowedExtensions.includes(fileExtension)) {
-//   alert("Veuillez sélectionner un fichier image au format JPG ou PNG.");
-//   return;
-// }
-
-
 if(!title || !category || !image) {
   alert('Veuillez remplir tous les champs du formulaire.')
   return;
 }
 
-//check if the image does not exceed 4mo//
+//Vérifier que l'image ne dépasse pas 4 Mo//
 if (image.size > 4 * 1024 * 1024) {
   alert("La taille de l'image ne doit pas dépasser 4 Mo.");
   return;
@@ -500,12 +452,12 @@ fetch("http://localhost:5678/api/works", {
 })
 .then(response => response.json()) 
 .then(work => {
-  //create and add the new work to the gallery//
+  //Créer et ajouter le nouveau travail à la galerie//
   const figure = createWorkFigure(work);
   const gallery = document.querySelector('.gallery');
   gallery.appendChild(figure);
 
-  //create and add the new work to the modal gallery//
+  //Créer et ajouter le nouveau travail à la galerie modale//
   const figureModal = createModalWorkFigure(work);
   const galleryModal = document.querySelector('.gallery-modal');
   galleryModal.appendChild(figureModal);
@@ -517,7 +469,7 @@ fetch("http://localhost:5678/api/works", {
 .catch(error => console.error(error));
 }
 
-//PREVIEW IMG//
+//APERÇU DE L'IMAGE//
 const inputImage = document.getElementById("image");
 const labelImage = document.getElementById("label-image");
 const pImage = document.querySelector("#form-photo-div > p");
